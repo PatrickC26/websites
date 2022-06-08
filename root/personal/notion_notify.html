@@ -13,43 +13,23 @@
       line();
       
     function line() {
-        let url= "https://notify-api.line.me/api/notify";
+        let url = "https://notify-api.line.me/api/notify";
+
         var xhr = new XMLHttpRequest();
-        xhr.open("PUT", url);
-        
+        xhr.open("POST", url);
+
         xhr.setRequestHeader("Authorization", "Bearer WeAd6AWnwn0gfBl0D1PbsXtWjuoVEw8l5SjXnE3G2RL");
         xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.send("message=Enter notion on website");
-        
+
         xhr.onreadystatechange = function () {
            if (xhr.readyState === 4) {
               console.log(xhr.status);
               console.log(xhr.responseText);
            }};
 
+        var data = "message=Enter notion on website";
 
-        
-<!--        var time = 0;-->
-<!--        -->
-<!--        while(time <= 2){-->
-<!--            time ++;-->
-<!--            fetch(url,{-->
-<!--                method: 'POST',-->
-<!--                header: {"Authorization": "Bearer WeAd6AWnwn0gfBl0D1PbsXtWjuoVEw8l5SjXnE3G2RL"},-->
-<!--                header: {"Content-Type": "application/x-www-form-urlencoded"},-->
-<!--                body: "message=Enter notion on website"-->
-<!--            })-->
-<!--            .then(response => {-->
-<!--                console.log('response.status: ', response.status);-->
-<!--                if (response.status == 200 ){-->
-<!--                    time = 90;-->
-<!--                }-->
-<!--                else if (time > 50){-->
-<!--                    window.alert("訊息傳送失敗\nerr code : POST - " + response.status);-->
-<!--                    time = 90;-->
-<!--                }-->
-<!--            });-->
-<!--        }-->
+        xhr.send(data);
     }
       
       
