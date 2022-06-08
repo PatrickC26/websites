@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>樹懶創客｜sloth maker</title>
+    <link rel="icon" href="https://patrickc26.github.io/slothMaker-notify/root/ftp/logo/color_100.png">
+  </head>
+  <body>
+      <center>
+          <h1>
+              樹懶創客內部系統 sloth maker internal system
+          </h1>
+          
+          <h2>
+              <label id = "cle">
+                  Checking....
+              </label>
+              
+              <br>
+              
+              <label id = "clc">
+                  檢查中....
+              </label>
+          </h2>
+          
+          <form>
+              Please enter your name 請輸入姓名：<input class="editor" id "T_name" type="text" name="name">
+          </form>
+          
+          <br>
+          <form>
+              <button type="button" name="button" id="button" onclick="load();" >確定</button>
+          </form>
+          
+          
+          <br>
+          <br>
+          
+          <h4>
+              <label id = "err">
+                  Error code :
+              </label>
+          </h4>
+          
+          <br>
+          
+          
+          <h5>
+              © 樹懶創客 sloth maker 2022
+          </h5>
+          <img src="https://patrickc26.github.io/slothMaker-notify/root/ftp/logo/color_500.png" alt="Sloth Maker" style="width:50px;height:50px;">
+          
+          
+      </center>
+  </body>
+  
+
+  <script>
+    let redirectURL ="https://notify-bot.line.me/oauth/authorize?response_type=code&client_id=anD105dcUiIYHbUY6WEvHx&redirect_uri=https://patrickc26.github.io/slothMaker-notify/root/notify/index.html&scope=notify&state=nostate";
+    
+    class values {
+        static reloading = true
+    }
+    var urlParams = new URLSearchParams(window.location.search);
+    var notify_code = urlParams.get("code");
+    var state = urlParams.get("state");
+    
+    console.log(notify_code);
+    
+    if (notify_code != "" && notify_code != null){
+        document.getElementById('cle').innerHTML = 'Account Checked comfirmed. Please enter your name.';
+        document.getElementById('clc').innerHTML = '帳戶已確認，請輸入您的姓名';
+        window.alert("請出入您的姓名");
+    }
+    else{
+        document.getElementById('button').disabled = true;
+        document.getElementById('cle').innerHTML = 'Account add failure. Please try again.';
+        document.getElementById('clc').innerHTML = '帳戶登錄失敗，請再試一次';
+        document.getElementById('err').innerHTML = 'URI error';
+        window.alert("登錄失敗，請重新登錄\nURI error");
+        window.location.href = redirectURL;
+    }
+      
+      
+    function load(){
+        document.getElementById('button').disabled = true;
+        
+        var nowin = parseInt(firebaseGET("staff/new/now")) + 1;
+        var unprocessed = firebaseGET("staff/new/unprocessed");
+        
+        
+        
+        if (nowin != "" || nowin != null || unprocessed != null){
+            try{
+                var innerS = String(document.querySelector('.editor').value);
+                console.log(innerS);
+                if (innerS != null && innerS != ""){
+                    var outS = unprocessed + "," + nowin.toString();
+                    firebasePUT("staff/new/unprocessed", outS);
+                    console.log(outS);
+                    firebasePUT("staff/new/now", nowin.toString());
+                    firebasePUT("staff/new/" + nowin.toString(), notify_code + "," + innerS);
+                    
+                    document.getElementById('cle').innerHTML = 'Account All Checked comfirmed. Please wait for futher notice.';
+                    document.getElementById('clc').innerHTML = '帳戶皆已確認，請等待進一步通知';
+                    document.getElementById('err').innerHTML = 'This website coulde be closed. 可關閉該網頁。'
+                    window.alert("成功登錄");
+                }
+                else{
+                    window.alert("名字不可空白");
+                    document.getElementById('button').disabled = false;
+                }
+            }
+            catch(Exception){
+                window.alert("名字不可空白，或特殊符號");
+                document.getElementById('button').disabled = false;
+            }
+        }
+        
+        
+        
+        
+    }
+      
+    function firebaseGET(dic) {
+        var url= "https://sloths-erp-default-rtdb.firebaseio.com/" + dic + ".json?auth=y2NQZArb4bsAm9paoA6n3G3YMFwKff0YSTBlWEZE";
+        var time = 0;
+        
+        do{
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", url, false ); // false for synchronous request
+            xmlHttp.send( null );
+            console.log( xmlHttp.responseText);
+            var inS = xmlHttp.responseText;
+            return inS.substring(1, inS.length-1);
+            time++;
+        }while(xmlHttp.status != 200 && time <= 5)
+        
+        if (time > 4){
+            document.getElementById('cle').innerHTML = 'Account add failure. Please try again.';
+            document.getElementById('clc').innerHTML = '帳戶登錄失敗，請再試一次';
+            document.getElementById('err').innerHTML = 'data GET request error, err code : ' + response.status;
+            window.alert("登錄失敗，請重新登錄\nerr code : GET - " + response.status);
+            window.location.href = redirectURL;
+        }
+           
+        return "";
+    }
+    function firebasePUT(dic , text) {
+        var url= "https://sloths-erp-default-rtdb.firebaseio.com/" + dic + ".json?auth=y2NQZArb4bsAm9paoA6n3G3YMFwKff0YSTBlWEZE";
+        var time = 0;
+        var backB = false;
+        
+        while(time <= 5){
+            time ++;
+            console.log('A');
+            fetch(url,{
+                method: 'PUT',
+                header: {"Content-Type": "application/json"},
+                body: '"' + text + '"'
+            })
+            .then(response => {
+                console.log('response.status: ', response.status);
+                if (response.status == 200 ){
+                    backB =  true;
+                    time = 9;
+                }
+                else if (time > 5){
+                    document.getElementById('cle').innerHTML = 'Account add failure. Please try again.';
+                    document.getElementById('clc').innerHTML = '帳戶登錄失敗，請再試一次';
+                    document.getElementById('err').innerHTML = 'data PUT request error, err code : ' + response.status;
+                    window.alert("登錄失敗，請重新登錄\nerr code : PUT - " + response.status);
+                    window.location.href = redirectURL;
+                    time = 9;
+                }
+            });
+            return backB;
+        }
+        return false;
+    }
+  </script>
+</html>
