@@ -11,7 +11,7 @@ function load(){
     worker.postMessage(name)
     // listen to any data passed from worker thread
     worker.addEventListener("message", event => {
-        
+
     })
 }
 
