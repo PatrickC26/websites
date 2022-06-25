@@ -6,7 +6,7 @@ function load(){
 //    putTime();
 
     
-    worker = new Worker("auth.js")
+    worker = new Worker("worker.js")
     // pass data to worker thread
     worker.postMessage(name)
     // listen to any data passed from worker thread
