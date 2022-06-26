@@ -3,6 +3,9 @@
 var readingAuth = false;
 var readCount = 0;
 var access = "";
+var redirectI = 0;
+var finalRedirect = "";
+
 
 let SUCCESS = 0, NO_ACCESS = 2,FAIL = 1, LOCKED = 3,TIMEOUT = 4;
 
@@ -35,6 +38,12 @@ function rfidAuth_load(){
 function checkAuth() {
     console.log(readingAuth);
     
+    if (redirectI != 0){
+    redirectI++;
+    console.log(redirectI);
+    if (redirectI >= 3)
+        window.location.href = finalRedirect;
+    }
     
     if (readingAuth){
         readCount++;
@@ -200,13 +209,14 @@ function successF(){
         
         firebasePUT("Access/" + access + "/ac", authToken);
         
-        let finalRedirect = redirectURL + "?auth=" + authToken;
         
-        window.location.href = finalRedirect;
-        
+        finalRedirect = redirectURL + "?auth=" + authToken;
+
+        redirectI = 1;
 
     }
 }
+
 
 
 function login(){

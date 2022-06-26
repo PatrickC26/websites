@@ -35,6 +35,7 @@ function httpGET(url) {
   
 function firebasePUT(dic , text) {
     var url= url_com + dic + url_key2;
+    console.log(url);
     var time = 0;
     var backB = false;
     
