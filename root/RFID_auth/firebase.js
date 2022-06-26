@@ -19,6 +19,8 @@ function httpGET(url) {
         xmlHttp.send( null );
         
         var inS = xmlHttp.responseText;
+        if (inS == "null")
+            return "";
         inS = inS.substring(1, inS.length-1);
         console.log(inS);
         return inS;
