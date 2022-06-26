@@ -1,4 +1,4 @@
-let worker;
+
 
 var readingAuth = false;
 var readCount = 0;
@@ -7,13 +7,13 @@ var access = "";
 let SUCCESS = 0, NO_ACCESS = 2,FAIL = 1, LOCKED = 3,TIMEOUT = 4;
 
 
-access = new URLSearchParams(window.location.search).get("code")
+access = new URLSearchParams(window.location.search).get("code");
 
 let name = firebaseGET("Access/" + access + "/name");
 
 console.log(name);
 
-if (name == ""){
+if (access == "" || name == ""){
     access = "internet";
     name = firebaseGET("Access/" + access + "/name");
     console.log(name);
@@ -183,8 +183,29 @@ function successF(){
     if (redirectURL == "-"){
         window.alert("LOGIN SUCCESS");
     }
-    else
-        window.location.href = redirectURL;
+    else{
+        
+        var authToken = "";
+        var alphabet = "ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz123456789123456789";
+        
+        for (let j = 0 ; j <  Math.abs(Math.random()*7) +20 ; j ++) {
+            var int_random = Math.abs(Math.random()* 64);
+            console.log(int_random);
+            authToken += alphabet.charAt(int_random);
+        }
+        
+        var nowT1 = new Date();
+        
+        authToken = authToken + "T" + (nowT1.getMinutes()).toString();
+        
+        firebasePUT("Access/" + access + "/ac", authToken);
+        
+        let finalRedirect = redirectURL + "?auth=" + authToken;
+        
+        window.location.href = finalRedirect;
+        
+
+    }
 }
 
 
