@@ -27,16 +27,12 @@ if (name != ""){
 }
 
 
-
-
 function rfidAuth_load(){
     console.log(startAuth());
 }
 
 
-
 function checkAuth() {
-//    console.log(readCount);
     console.log(readingAuth);
     
     
@@ -59,7 +55,6 @@ function checkAuth() {
         
         if (firebaseGET("request/requestScan") == "0") {
             let scanUID = firebaseGET("request/scanUID");
-            console.log(scanUID);
             if (scanUID == "")
                 startAuth();
             
@@ -72,9 +67,6 @@ function checkAuth() {
                     document.getElementById('rfidAuth_button').disabled = false;
                 return NO_ACCESS; // no access
             }
-
-            console.log(firebaseGET("Access/" + access + "/inuse"));
-            console.log("Access/" + access + "/inuse");
             
             if (firebaseGET("Access/" + access + "/inuse") != ("1")){
                 if (confirm("login fail (err code : NO_ACCESS) \nlogin again?"))
@@ -187,18 +179,17 @@ function avaliableTimeCompare(time , availableGap){
 
 
 function successF(){
-    if (access == "internet")
+    let redirectURL = firebaseGET("Access/" + access + "/url");
+    if (redirectURL == "-"){
         window.alert("LOGIN SUCCESS");
-    else{
-        let redirectURL = firebaseGET("Access/" + access + "/url");
-        window.location.href = redirectURL;
     }
+    else
+        window.location.href = redirectURL;
 }
 
 
 function login(){
     let pswd = firebaseGET("Access/" + access + "/pswd");
-    console.log(pswd);
     if (document.querySelector('.editor').value == pswd)
         successF();
     else

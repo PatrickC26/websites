@@ -22,7 +22,6 @@ function httpGET(url) {
         if (inS == "null")
             return "";
         inS = inS.substring(1, inS.length-1);
-        console.log(inS);
         return inS;
         time++;
     }while(xmlHttp.status != 200 && time <= 5)
