@@ -191,6 +191,7 @@ function successF(){
     let redirectURL = firebaseGET("Access/" + access + "/url");
     if (redirectURL == "-"){
         window.alert("LOGIN SUCCESS");
+        readingAuth = false;
     }
     else{
         

@@ -10,7 +10,6 @@ window.history.replaceState("","",location.href.substring(0, location.href.index
 console.log(auth);
 
 if (auth == null || auth == ""){
-    window.alert("Please Login");
     window.location.href = authPage + access;
 }
 
@@ -35,6 +34,16 @@ else if (auth == firebaseGET("Access/" + access + "/ac")){
 }
 
 else{
-    window.alert("Please Login");
-    window.location.href = authPage + access;
+    window.location.href = "";//authPage + access;
 }
+
+
+
+
+
+window.onload = (event) => {
+//    if (
+        window.alert("重新載入需重新登入，使否重載");
+//        )
+//        rfidAuth_load();
+};
