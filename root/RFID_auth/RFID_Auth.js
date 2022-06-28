@@ -48,8 +48,8 @@ function checkAuth() {
     if (readingAuth){
         readCount++;
         
-        if (readCount > 1000){
-            firebasePUT("request/requestScan", "0", false);
+        if (readCount > 100){
+            firebasePUT("request/requestScan", "0");
             
             if (confirm("login fail (time out : 1000) \nlogin again?"))
                 rfidAuth_load();
@@ -91,11 +91,11 @@ function checkAuth() {
 
             let badrequest = firebaseGET("account/" + scanUID + "/badTime");
             if (avaliableTimeCompare(badrequest, 2) == SUCCESS){
-                if (confirm("login fail (err code : badTime) \nlogin again?"))
+                if (confirm("login fail (err code : LOCK) \nlogin again?"))
                     rfidAuth_load();
                 else
                     document.getElementById('rfidAuth_button').disabled = false;
-                return badTime;
+                return LOCK;
             }
 
             let goodrequest = firebaseGET("account/" + scanUID + "/time");
@@ -129,9 +129,9 @@ function startAuth() {
     document.getElementById('rfidAuth_button').disabled = true;
     
     try {
-        firebasePUT("request/requestScan", "1", false);
-        firebasePUT("request/isNew", "0", false);
-        firebasePUT("request/scanUID", "", false);
+        firebasePUT("request/requestScan", "1");
+        firebasePUT("request/isNew", "0");
+        firebasePUT("request/scanUID", "");
 
         for (let j = 0 ; j < 50000 ; j++);
         
@@ -144,7 +144,7 @@ function startAuth() {
     catch ( e) {
         console.log("ERROR");
         console.log(e);
-        firebasePUT("request/requestScan", "0", false);
+        firebasePUT("request/requestScan", "0");
         return FAIL; // fail to read
     }
 
@@ -221,8 +221,10 @@ function successF(){
 
 function login(){
     let pswd = firebaseGET("Access/" + access + "/pswd");
-    if (document.querySelector('.editor').value == pswd)
+    if (document.querySelector('.editor').value == pswd){
+        firebasePUT("request/requestScan", "0");
         successF();
+    }
     else
         window.alert("password incorrect");
 }
