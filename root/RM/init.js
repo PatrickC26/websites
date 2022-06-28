@@ -8,15 +8,18 @@ let auth = new URLSearchParams(window.location.search).get("auth");
 console.log(auth);
 
 if (auth == null || auth == ""){
-    window.alert("Please log in");
+    window.alert("Please Login");
     window.location.href = authPage + access;
 }
+
 else if (auth == firebaseGET("Access/" + access + "/ac")){
     var nowM = (new Date).getMinutes();
     if ( nowM < 2)
         nowM += 60;
     nowM -= 2;
-    console.log(nowM)
+    
+    console.log(nowM);
+    
     if (nowM < parseInt(auth.substring(auth.indexOf("T")+1, auth.length))){
         console.log("SUCCESS");
         
@@ -25,8 +28,13 @@ else if (auth == firebaseGET("Access/" + access + "/ac")){
         
         firebasePUT("Access/" + access + "/ac", "");
     }
+    else {
+        window.alert("Time out\nPlease Login again");
+    }
+    
 }
+
 else{
-    window.alert("Please log in");
+    window.alert("Please Login");
     window.location.href = authPage + access;
 }
