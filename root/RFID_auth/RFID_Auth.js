@@ -51,7 +51,7 @@ function checkAuth() {
         if (readCount > 100){
             firebasePUT("request/requestScan", "0");
             
-            if (confirm("login fail (time out : 1000) \nlogin again?"))
+            if (confirm("login fail (time out : 100) \nlogin again?"))
                 rfidAuth_load();
             else{
                 document.getElementById('rfidAuth_button').disabled = false;
