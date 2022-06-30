@@ -37,13 +37,3 @@ else{
     window.location.href = "";//authPage + access;
 }
 
-
-
-
-
-window.onload = (event) => {
-//    if (
-        window.alert("重新載入需重新登入，使否重載");
-//        )
-//        rfidAuth_load();
-};

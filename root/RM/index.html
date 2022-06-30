@@ -4,6 +4,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>樹懶創客｜sloth maker</title>
         <link rel="icon" href="https://patrickc26.github.io/websites/root/ftp/logo/color_100.png">
         
@@ -11,27 +12,25 @@
     
     <body>
         <center>
-            <h1>
+            <h1 style="font-family: Arial;">
                 Relation Management
             </h1>
             
+            
             <h3>
+                <label id = "name" style="font-family: Arial;">
+                    Name : Fetching...
+                </label>
+                <br>
                 
+                <button type="button" style="font-size:20px" name="button" id="loginButton" onclick="load(-1);" >previous</button>
+                <label id = "name_id" style="font-family: Arial;">
+                    0/0
+                </label>
+                <button type="button" style="font-size:20px" name="button" id="loginButton" onclick="load(1);" >next</button>
             </h3>
             
-            <h2>
-                <label id = "name" style="font-family: Arial;">
-                    Access : Fetching...
-                </label>
-            </h2>
             
-            <form>
-                password：<input class="editor" id "pswd" type="password" name="name">
-            </form>
-            <button type="button" name="button" id="loginButton" onclick="login();" >login</button>
-            
-            <br>
-            <button type="button" name="button" id="rfidAuth_button" onclick="rfidAuth_load();" >RFID Login</button>
             
             
             <br>
@@ -49,6 +48,7 @@
     </body>
     
     <script src="firebase.js"></script>
-    <script src="init.js"></script>
+    <script src="load.js"></script>
+<!--    <script src="init.js"></script>-->
     
 </html>

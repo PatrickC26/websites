@@ -1,12 +1,12 @@
 
 
-let url_com = "https://rfid-auth-sloth-default-rtdb.firebaseio.com/";
+let url_com = "https://rm-sloth-default-rtdb.firebaseio.com/";
 let url_key1 = ".json?auth=sdfsdfdknnMe2xsdfOCSXHZsLSFdqsdfshyXew43";
 let url_key2 = ".json?auth=M3GknnMe2xY1LWQ01OCSXHZsLSFdq4f7phEyXKOP";
-let url_key3 = ".json?auth=se2xsdfXHZsLSFdsfdsfsdfsdfSFRWEesfXsfdsP";
+let url_key3 = ".json?auth=uQfGtKOnpLuKSYkr6YYA5x0yz3oqRvFibb2UvB8l";
 
 function firebaseGET(dic) {
-    var url= url_com + dic + url_key2;
+    var url= url_com + dic + url_key3;
     return httpGET(url);
 }
 
@@ -34,7 +34,7 @@ function httpGET(url) {
 
   
 function firebasePUT(dic , text) {
-    var url= url_com + dic + url_key2;
+    var url= url_com + dic + url_key3;
     var time = 0;
     var backB = false;
     
