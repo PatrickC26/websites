@@ -10,6 +10,12 @@
         
     </head>
     
+    <style>
+        br {
+            width : "70%";
+        }
+    </style>
+    
     <body>
         <center>
             <h1 style="font-family: Arial;">
@@ -17,19 +23,75 @@
             </h1>
             
             
-            <h3>
-                <label id = "name" style="font-family: Arial;">
-                    Name : Fetching...
+            <h3 style="font-family: Arial;">
+                <label id = "name" >
+                    Name :
                 </label>
-                <br>
-                
-                <button type="button" style="font-size:20px" name="button" id="loginButton" onclick="load(-1);" >previous</button>
-                <label id = "name_id" style="font-family: Arial;">
-                    0/0
-                </label>
-                <button type="button" style="font-size:20px" name="button" id="loginButton" onclick="load(1);" >next</button>
+                <select id="nameSelector" style="font-size: 20px;" onChange="javascript:loaddata(this);">
+                    <option >Please Select</option>
+                    <option id="op0">null</option>
+                    <option id="op1">null</option>
+                    <option id="op2">null</option>
+                    <option id="op3">null</option>
+                    <option id="op4">null</option>
+                    <option id="op5">null</option>
+                    <option id="op6">null</option>
+                    <option id="op7">null</option>
+                    <option id="op8">null</option>
+                    <option id="op9">null</option>
+                    <option id="op10">null</option>
+                    <option id="op11">null</option>
+                    <option id="op12">null</option>
+                    <option id="op13">null</option>
+                    <option id="op14">null</option>
+                    <option id="op15">null</option>
+                    <option id="op16">null</option>
+                    <option id="op17">null</option>
+                    <option id="op18">null</option>
+                    <option id="op19">null</option>
+                    <option id="op20">null</option>
+                </select>
             </h3>
             
+            <hr style="width:70%">
+            
+                
+            <h3>
+                <label style="font-family: Arial; font-size:30px; ">
+                    Basic:
+                </label>
+                
+                <table id= "tableOfBasic" style="width:50%; padding:20px; text-align:left;">
+                    <tr id = "nextAppo" ><th >
+                        &nbsp; Next Apponiment :
+                    </th></tr>
+                    
+                    <tr id = "job" ><th >
+                        &nbsp; Job :
+                    </th></tr>
+                    
+                    <tr id = "phone" ><th >
+                        &nbsp; Phone :
+                    </th></tr>
+                    
+                    <tr id = "email" ><th >
+                        &nbsp; E-mail :
+                    </th></tr>
+                    
+                    <tr id = "address" ><th >
+                        &nbsp; Address :
+                    </th></tr>
+                <table>
+            </h3>
+            
+            <hr style="width:70%">
+            
+            
+            
+            <button type="button" class="collapsible">Open Collapsible</button>
+            <div class="content">
+              <p>Lorem ipsum...</p>
+            </div>
             
             
             
@@ -41,8 +103,6 @@
                 </label >
             </h5>
             
-            
-            
             <img src="https://patrickc26.github.io/websites/root/ftp/logo/color_500.png" alt="Sloth Maker" style="width:50px;height:50px;">
         </center>
     </body>
@@ -50,5 +110,24 @@
     <script src="firebase.js"></script>
     <script src="load.js"></script>
 <!--    <script src="init.js"></script>-->
+
+    <script>
+        
+        
+        var coll = document.getElementsByClassName("collapsible");
+        var i;
+
+        for (i = 0; i < coll.length; i++) {
+          coll[i].addEventListener("click", function() {
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.display === "block") {
+              content.style.display = "none";
+            } else {
+              content.style.display = "block";
+            }
+          });
+        }
+    </script>
     
 </html>
