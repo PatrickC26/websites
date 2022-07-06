@@ -20,6 +20,7 @@ for (var i = 0 ; i < countAllName ; i++){
 
 //// init
 let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+document.getElementById("a").innerHTML = width;
 if (width > 900)
     document.getElementById("tableOfBasic").style.width = "50%";
 console.log(width);
