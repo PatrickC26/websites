@@ -22,7 +22,7 @@ for (var i = 0 ; i < countAllName ; i++){
 let width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
 document.getElementById("a").innerHTML = width;
 if (width > 900)
-    document.getElementById("tableOfBasic").style.width = "100%";
+    document.getElementById("tableOfBasic").style.width = width*0.7 + "px";
 console.log(width);
 // init end
 
