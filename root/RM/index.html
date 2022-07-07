@@ -1,4 +1,4 @@
-<!--ID 1.0.2022.07.06 B4-->
+<!--ID 1.0.2022.07.06 B5-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +21,12 @@
             font-family: Arial;
         }
         
+        table{
+            border: 1px solid black;
+            border-radius: 25px;
+            border-color : "red";
+            padding: 20px;
+        }
     </style>
     
     <body>
@@ -88,10 +94,111 @@
                     <tr id = "address" ><th >
                         &nbsp; Address :
                     </th></tr>
-                <table>
+                </table>
             </h3>
             
-            <hr style="width:70%">
+            
+            <br>
+            <h3>
+                <label style=" font-size:30px; ">
+                    —— Food ——
+                </label>
+                
+                <table id= "tableOfFood" style="width:70%; padding:20px; text-align:center;">
+                    <tr >
+                        <th > <center>
+                        - LIKE -
+                        <center></th>
+                        
+                        <th > <center>
+                        - HATE -
+                        <center></th>
+                    </tr>
+                    
+                    <tr>
+                        <th id = "foodLike"><center>
+                            null
+                        <center></th>
+                        <th id = "foodhate"><center>
+                            null
+                        <center></th>
+                    </tr>
+                </table>
+            </h3>
+            
+            
+            <br>
+            <h3>
+                <label style=" font-size:30px; ">
+                    —— Chatting ——
+                </label>
+                
+                <table id= "tableOfChat" style="width:70%; padding:20px; text-align:center;">
+                    <tr >
+                        <th > <center>
+                        - LIKE -
+                        <center></th>
+                        
+                        <th > <center>
+                        - HATE -
+                        <center></th>
+                    </tr>
+                    
+                    <tr>
+                        <th id = "chatLike"><center>
+                            null
+                        <center></th>
+                        <th id = "chathate"><center>
+                            null
+                        <center></th>
+                    </tr>
+                </table>
+            </h3>
+            
+            
+            <br>
+            <h3>
+                <label style=" font-size:30px; ">
+                    —— Ideas ——
+                </label>
+                
+                <table id= "tableOfBasic" style="width:70%; padding:20px; text-align:cnter;">
+                    <tr >
+                        <th > <center>
+                        - Gift -
+                        <center></th>
+                        
+                        <th > <center>
+                        - Trip -
+                        <center></th>
+                    </tr>
+                    
+                    <tr>
+                        <th id = "IdeaGift"><center>
+                            null
+                        <center></th>
+                        <th id = "IdeaTrip"><center>
+                            null
+                        <center></th>
+                    </tr>
+                </table>
+            </h3>
+            
+            
+            <br>
+            <h3>
+                <label style=" font-size:30px; ">
+                    —— Notes ——
+                </label>
+                
+                <table id= "tableOfNote" style="width:70%; padding:20px; text-align:cnter;">
+                    <tr><th id = "note">
+                        null
+                    </th></tr>
+                </table>
+            </h3>
+            
+            
             
             
             
@@ -112,6 +219,9 @@
         </center>
     </body>
     
+    
+    
+    <script src="word.js"></script>
     <script src="firebase.js"></script>
     <script src="load.js"></script>
 <!--    <script src="init.js"></script>-->

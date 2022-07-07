@@ -11,6 +11,8 @@ console.log(width);
 var data = "";
 var conutName = 0;
 
+loaddata0();
+
 var allNames = firebaseGET("names/ALL");
 console.log(allNames.split(",")[0]);
 var countAllName = allNames.split(",").length;
@@ -27,15 +29,31 @@ for (var i = 0 ; i < countAllName ; i++){
     document.getElementById("op" + i.toString()).innerHTML = realName;
 }
 
-
+function loaddata0 (){
+    document.getElementById("nextAppo").innerHTML = "Next Apponiment : " ;
+    document.getElementById("job").innerHTML = "Job : " ;
+    document.getElementById("phone").innerHTML = "Phone : " ;
+    document.getElementById("email").innerHTML = "E-mail : " ;
+    document.getElementById("address").innerHTML = "Address : " ;
+    document.getElementById("foodLike").innerHTML = "" ;
+    document.getElementById("foodhate").innerHTML = "" ;
+    document.getElementById("chatLike").innerHTML = "" ;
+    document.getElementById("chathate").innerHTML = "" ;
+    document.getElementById("IdeaGift").innerHTML = "" ;
+    document.getElementById("IdeaTrip").innerHTML = "" ;
+    document.getElementById("note").innerHTML = "- empty -" ;
+}
 function loaddata (sel){
     let index = sel.selectedIndex -1;
     console.log(index);
     
+    if (index < 0){
+        loaddata0();
+        return;
+    }
+    
     let nextAppo = firebaseGET("names/" + allNames.split(",")[index] + "/nextAppo" );
     document.getElementById("nextAppo").innerHTML = "Next Apponiment : " + nextAppo;
-    document.getElementById("nextAppo").style.border = "1px solid black";
-    document.getElementById("nextAppo").style.borderRadius = "10px";
     
     let job = firebaseGET("names/" + allNames.split(",")[index] + "/job" );
     document.getElementById("job").innerHTML = "Job : " + job;
@@ -49,5 +67,27 @@ function loaddata (sel){
     let address = firebaseGET("names/" + allNames.split(",")[index] + "/address" );
     document.getElementById("address").innerHTML = "Address : " + address;
     
+    let foodLike = firebaseGET("names/" + allNames.split(",")[index] + "/food_like" );
+    document.getElementById("foodLike").innerHTML = foodLike;
     
+    let foodhate = firebaseGET("names/" + allNames.split(",")[index] + "/food_hate" );
+    document.getElementById("foodhate").innerHTML = foodhate;
+    
+    let chatLike = firebaseGET("names/" + allNames.split(",")[index] + "/chat_like" );
+    document.getElementById("chatLike").innerHTML = chatLike;
+    
+    let chathate = firebaseGET("names/" + allNames.split(",")[index] + "/chat_hate" );
+    document.getElementById("chathate").innerHTML = chathate;
+    
+    let idea_gift = firebaseGET("names/" + allNames.split(",")[index] + "/idea_gift" );
+    document.getElementById("IdeaGift").innerHTML = idea_gift
+    
+    let IdeaTrip = firebaseGET("names/" + allNames.split(",")[index] + "/idea_trip" );
+    document.getElementById("IdeaTrip").innerHTML = IdeaTrip;
+    
+    let note = firebaseGET("names/" + allNames.split(",")[index] + "/note" );
+    if (note == "")
+        document.getElementById("note").innerHTML =  "- empty -";
+    else
+        document.getElementById("note").innerHTML =  dehyperNote(note);
 }
