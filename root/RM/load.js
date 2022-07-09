@@ -9,7 +9,9 @@ if (width > 900){
     document.getElementById("tableOfAppointmentDate").style.width = width*0.7 + "px";
     document.getElementById("tableOfSpecialDate").style.width = width*0.7 + "px";
     document.getElementById("quickNote").style.width = width*0.7 + "px";
-
+    
+    document.getElementById("AppointmentDateButtonL").style.visibility = "NONE";
+//    document.getElementById("SpecialDateButtonL").style.visibility = width*0.7 + "px";
 }
 // init end
 
