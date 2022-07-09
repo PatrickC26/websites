@@ -101,14 +101,19 @@ function SpecialDateFunc(){
 
 function saveQuickNoteFunc(){
     let index = document.getElementById("nameSelector").selectedIndex -1;
+    if (index == 0)
+        return;
     let numfs =firebaseGET("names/" + allNames.split(",")[index] + "/notes/num");
     let num = parseInt(numfs);
     num++;
     let numS = num.toString();
     
-    
     firebasePUT("names/" + allNames.split(",")[index] + "/notes/num", numS);
     firebasePUT("names/" + allNames.split(",")[index] + "/notes/" + numS , document.getElementById("quickNote").value);
+    
+    document.getElementById("quickNote").value = "";
+    
+    window.alert("Save Success");
 }
 
 function loaddata0 (){
@@ -130,7 +135,7 @@ function loaddata0 (){
     document.getElementById("AppointmentDateButton").innerHTML = "EXPAND" ;
     document.getElementById("SpecialDateButton").innerHTML = "EXPAND" ;
     
-    document.getElementById("quickNote").innerHTML = "";
+    document.getElementById("quickNote").value = "";
 }
 
 
@@ -143,10 +148,8 @@ function loaddata (sel){
     let index = sel.selectedIndex -1;
     console.log(index);
     
-    if (index < 0){
-        loaddata0();
+    if (index < 0)
         return;
-    }
     
     let nextAppo = firebaseGET("names/" + allNames.split(",")[index] + "/nextAppo" );
     document.getElementById("nextAppo").innerHTML = "Next Apponiment : " + nextAppo;
