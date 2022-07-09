@@ -4,16 +4,17 @@ let authPage = "https://patrickc26.github.io/websites/root/RFID_auth/RFID_auth.h
 let access = "aQ2Zh96618D"; // should only edit HERE
 
 
-
+let auth = new URLSearchParams(window.location.search).get("auth");
 console.log(auth);
 
-window.history.replaceState("","",location.href.substring(0, location.href.indexOf("?") ).toString());
+
 
 if (auth == null || auth == ""){
     window.location.href = authPage + access;
 }
 
 else if (auth == firebaseGET("Access/" + access + "/ac")){
+    window.history.replaceState("","",location.href.substring(0, location.href.indexOf("?") ).toString());
     var nowM = (new Date).getMinutes();
     if ( nowM < 2)
         nowM += 60;
