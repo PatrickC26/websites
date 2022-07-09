@@ -12,12 +12,12 @@ function firebaseGET(dic) {
 
 function httpGET(url) {
     var time = 0;
-    
+
     do{
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.open( "GET", url, false ); // false for synchronous request
         xmlHttp.send( null );
-        
+
         var inS = xmlHttp.responseText;
         if (inS == "null")
             return "";
@@ -25,7 +25,7 @@ function httpGET(url) {
         return inS;
         time++;
     }while(xmlHttp.status != 200 && time <= 5)
-    
+
     if (time > 4){
         window.alert("Pls Contact engineer with \nerr code : GET - " + response.status);
     }
