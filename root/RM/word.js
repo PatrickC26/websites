@@ -1,11 +1,11 @@
 function dehyperNote(inS){
-    return inS.replace("`n", "<br>").replace("`t", "\t").replace("`c", "\"").replace("`p","%").replace("`d", ",");
+    return inS.replaceAll("`n", "<br>").replaceAll("`t", "\t").replaceAll("`c", "\"").replaceAll("`p","%").replaceAll("`d", ",");
 }
 
 function hyperNote(inS) {
-    return inS.replace("\n", "`n").replace("\t", "`t").replace("\"", "`c").replace("%","`p").replace(",", "`d");
+    return inS.replaceAll("\n", "`n").replaceAll("\t", "`t").replaceAll("\"", "`c").replaceAll("%","`p").replaceAll(",", "`d");
 }
 
 function noteCheck(inS){
-    return inS.replace("\\", "").replace("`", "").replace("'", "").replace("\"", "");
+    return inS.replaceAll("\\", "").replaceAll("`", "").replaceAll("'", "").replaceAll("\"", "");
 }

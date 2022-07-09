@@ -102,7 +102,7 @@ function SpecialDateFunc(){
 
 function saveQuickNoteFunc(){
     let index = document.getElementById("nameSelector").selectedIndex -1;
-    if (index == 0)
+    if (index == -1)
         return;
     let numfs =firebaseGET("names/" + allNames.split(",")[index] + "/notes/num");
     let num = parseInt(numfs);
@@ -110,7 +110,17 @@ function saveQuickNoteFunc(){
     let numS = num.toString();
     
     firebasePUT("names/" + allNames.split(",")[index] + "/notes/num", numS);
-    firebasePUT("names/" + allNames.split(",")[index] + "/notes/" + numS , document.getElementById("quickNote").value);
+    let outS =
+    "`date" + (new Date().getFullYear()).toString() + "." +
+        (((new Date().getMonth() +1)<10)? "0":"") + (new Date().getMonth() +1).toString() + "." +
+        (((new Date().getDate())<10)? "0":"") + (new Date().getDate()).toString() + " " +
+        (((new Date().getHours())<10)? "0":"") + (new Date().getHours()).toString() +"-" +
+        (((new Date().getMinutes())<10)? "0":"") + (new Date().getMinutes()).toString() +"-" +
+        (((new Date().getSeconds())<10)? "0":"") + (new Date().getSeconds()).toString()
+    
+    + "`note" + hyperNote(document.getElementById("quickNote").value)
+    + "`read0";
+    firebasePUT("names/" + allNames.split(",")[index] + "/notes/" + numS , outS);
     
     document.getElementById("quickNote").value = "";
     
