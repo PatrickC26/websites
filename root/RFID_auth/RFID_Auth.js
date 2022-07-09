@@ -223,7 +223,7 @@ function successF(){
 function login(){
     let pswd = firebaseGET("Access/" + access + "/pswd");
     if (document.querySelector('.editor').value == pswd){
-        firebasePUT("request/requestScan", "0");
+        firebasePUT("request/requestScan", "2");
         successF();
     }
     else

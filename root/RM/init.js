@@ -9,11 +9,7 @@ console.log(auth);
 
 
 
-if (auth == null || auth == ""){
-    window.location.href = authPage + access;
-}
-
-else if (auth == firebaseGET("Access/" + access + "/ac")){
+if (auth == httpGET("https://rfid-auth-sloth-default-rtdb.firebaseio.com/Access/" + access + "/ac.json?auth=M3GknnMe2xY1LWQ01OCSXHZsLSFdq4f7phEyXKOP")){
     window.history.replaceState("","",location.href.substring(0, location.href.indexOf("?") ).toString());
     var nowM = (new Date).getMinutes();
     if ( nowM < 2)
@@ -35,5 +31,5 @@ else if (auth == firebaseGET("Access/" + access + "/ac")){
 }
 
 else{
-    window.location.href = "";//authPage + access;
+    window.location.href = authPage + access;
 }
