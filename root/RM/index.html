@@ -24,9 +24,9 @@
         table{
             border: 1px solid black;
             border-radius: 25px;
-            border-color : "red";
             padding: 20px;
         }
+        
     </style>
     
     <body>
@@ -66,7 +66,7 @@
                 </select>
             </h3>
             
-            <hr style="width:70%">
+            <hr style="width:90%">
             
                 
             <h3>
@@ -104,7 +104,7 @@
                     —— Food ——
                 </label>
                 
-                <table id= "tableOfFood" style="width:70%; padding:20px; text-align:center;">
+                <table id= "tableOfFood" style="width:90%; padding:20px; text-align:center;">
                     <tr >
                         <th > <center>
                         - LIKE -
@@ -133,7 +133,7 @@
                     —— Chatting ——
                 </label>
                 
-                <table id= "tableOfChat" style="width:70%; padding:20px; text-align:center;">
+                <table id= "tableOfChat" style="width:90%; padding:20px; text-align:center;">
                     <tr >
                         <th > <center>
                         - LIKE -
@@ -162,7 +162,7 @@
                     —— Ideas ——
                 </label>
                 
-                <table id= "tableOfBasic" style="width:70%; padding:20px; text-align:cnter;">
+                <table id= "tableOfIdea" style="width:90%; padding:20px; text-align:cnter;">
                     <tr >
                         <th > <center>
                         - Gift -
@@ -191,7 +191,7 @@
                     —— Notes ——
                 </label>
                 
-                <table id= "tableOfNote" style="width:70%; padding:20px; text-align:cnter;">
+                <table id= "tableOfNote" style="width:90%; padding:20px; text-align:cnter;">
                     <tr><th id = "note">
                         null
                     </th></tr>
@@ -205,50 +205,47 @@
                    —— Other dates ——
                </label>
                
-               <table id= "tableOfBasic" style="width:70%; padding:20px; text-align:cnter;">
-                   <tr >
-                       <th > <center>
-                       - Appointment History -
-                       <center></th>
-                       
-                       <th > <center>
-                       - Special Dates -
-                       <center></th>
-                   </tr>
+               <h3 id= "tableOfAppointmentDate" style="width:90%; padding:20px; text-align:cnter; border: 1px solid black; border-radius: 25px;">
+                   <button type="button"  style="visibility :hidden">EXPAND</button>
+                   - Appointment History -
+                   <button type="button" id="AppointmentDateButton">EXPAND</button>
+                   <br>
                    
-                   <tr>
-                       <th id = "IdeaGift"><center>
-                           null
-                       <center></th>
-                       <th id = "IdeaTrip"><center>
-                           null
-                       <center></th>
-                   </tr>
-               </table>
+                   <label id = "AppointmentDate">
+                      null
+                   </label>
+               </h3>
+               
+               
+               <br>
+               
+               
+               <h3 id= "tableOfSpecialDate" style="width:90%; padding:20px; text-align:cnter; border: 1px solid black; border-radius: 25px;">
+                   <button type="button" style="visibility :hidden">EXPAND</button>
+                   - Special Dates -
+                   <button type="button" id="SpecialDateButton">EXPAND</button>
+                   <br>
+                   <label id = "SpecialDate">
+                       null
+                   </label>
+                   
+               </h3>
             </h3>
+            
             
             <br>
             <h3>
                 <label style=" font-size:30px; ">
-                    —— Notes ——
+                    —— Quick Notes ——
                 </label>
+                <br>
+                <textarea id="quickNote" name="quickNote" rows="4" cols="50" style="width:90%; font-size:20px; border-radius: 15px;"></textarea>
                 
-                <table id= "tableOfNote" style="width:70%; padding:20px; text-align:cnter;">
-                    <tr><th id = "note">
-                        null
-                    </th></tr>
-                </table>
+                <br>
+                <button type="button" id="saveQuickNote">SAVE</button>
             </h3>
             
             
-            <br>
-            <br>
-            
-            
-            <button type="button" class="collapsible">Open Collapsible</button>
-            <div class="content">
-              <p id = "a">Lorem ipsum...</p>
-            </div>
             
             
             
@@ -269,23 +266,5 @@
     <script src="load.js"></script>
 <!--    <script src="init.js"></script>-->
 
-    <script>
-        
-        
-        var coll = document.getElementsByClassName("collapsible");
-        var i;
-
-        for (i = 0; i < coll.length; i++) {
-          coll[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var content = this.nextElementSibling;
-            if (content.style.display === "block") {
-              content.style.display = "none";
-            } else {
-              content.style.display = "block";
-            }
-          });
-        }
-    </script>
     
 </html>

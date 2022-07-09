@@ -6,7 +6,7 @@ let url_key2 = ".json?auth=M3GknnMe2xY1LWQ01OCSXHZsLSFdq4f7phEyXKOP";
 let url_key3 = ".json?auth=uQfGtKOnpLuKSYkr6YYA5x0yz3oqRvFibb2UvB8l";
 
 function firebaseGET(dic) {
-    var url= url_com + dic + url_key3;
+    let url= url_com + dic + url_key3;
     return httpGET(url);
 }
 
