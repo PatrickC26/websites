@@ -10,7 +10,7 @@ console.log(auth);
 window.history.replaceState("","",location.href.substring(0, location.href.indexOf("?") ).toString());
 
 if (auth == null || auth == ""){
-//    window.location.href = authPage + access;
+    window.location.href = authPage + access;
 }
 
 else if (auth == firebaseGET("Access/" + access + "/ac")){

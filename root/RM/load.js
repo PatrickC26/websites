@@ -74,7 +74,7 @@ function AppointmentDateFunc(){
 
 function SpecialDateFunc(){
     
-    let SpecialDateS = firebaseGET("names/" + allNames.split(",")[document.getElementById("nameSelector").selectedIndex -1] + "specialDate" );
+    let SpecialDateS = firebaseGET("names/" + allNames.split(",")[document.getElementById("nameSelector").selectedIndex -1] + "/specialDate" );
     
     if (document.getElementById("SpecialDateButton").innerText == "EXPAND"){
         document.getElementById("SpecialDateButton").innerHTML = "CLOSE" ;
