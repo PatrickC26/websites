@@ -17,7 +17,7 @@ void setup() {
   // 設定包率9600
   Serial.begin(9600);
 
-  // 將地2角位 設定為輸入(INPUT)且上拉(PULLUP)
+  // 將地2腳位 設定為輸入(INPUT)且上拉(PULLUP)
   pinMode(2,INPUT_PULLUP);
 }
 

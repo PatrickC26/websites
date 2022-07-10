@@ -10,7 +10,7 @@
  * 
  * 想知道更多資訊，歡迎進入
  * For more information pls visit
- *  * https://sites.google.com/view/sloth-maker/code-example/serial
+ * https://sites.google.com/view/sloth-maker/code-example/serial
  */
 
 void setup() {
