@@ -10,16 +10,24 @@
  * 
  * 想知道更多資訊，歡迎進入
  * For more information pls visit
- * https://sites.google.com/view/sloth-maker/code-example/code-serial
+ *  * https://sites.google.com/view/sloth-maker/code-example/serial
  */
 
 void setup() {
   // 與電腦進行初始化
   // 設定包率9600
   Serial.begin(9600);
+
+  // 列印 Hello World 至電腦
+  Serial.println("Hello world");
 }
 
 void loop() {
-  // 列印 Hello World 至電腦
-  Serial.println("Hello world");
+  // 判斷是否有資料可以收取
+  if (Serial.available()){
+    // 收取資料
+    char inC = Serial.read();
+    // 將收到的數值進行列印
+    Serial.print(inC);
+  }
 }
