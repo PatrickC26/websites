@@ -25,7 +25,7 @@ void setup() {
   servo.attach(2);
   
   // 控制伺服馬達轉動角度
-  servo.write(val);
+  servo.write(100);
 }
 
 void loop() {
