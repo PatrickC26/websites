@@ -1,7 +1,7 @@
 /* 
  * OLED 螢幕 (1.3")
  * 
- * 本程式將透 Arduino 讓 OLED 螢幕進行顯示
+ * 本程式將透過 Arduino 讓 OLED 螢幕進行顯示
  * This code will show your data on the OLED screen by Arduino
  * 
  * 本範例程式由 樹懶創客 撰寫
