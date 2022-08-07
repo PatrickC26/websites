@@ -22,20 +22,24 @@ void setup() {
   // 與電腦進行初始化
   // 設定包率9600
   Serial.begin(9600);
+  // 讓 Arduino 知道 TrigPin 會進行訊號發射
+  pinMode(TrigPin, OUTPUT);
+  // 讓 Arduino 知道 EchoPin 會進行接收
+  pinMode(EchoPin, INPUT);
 }
 
 void loop() {
   // 讓超音波感測器發射聲波
-  digitalWrite(EchoPin, LOW);
+  digitalWrite(TrigPin, LOW);
   delay(2);
-  digitalWrite(EchoPin, HIGH);
+  digitalWrite(TrigPin, HIGH);
   delay(10);
-  digitalWrite(EchoPin, LOW);
+  digitalWrite(TrigPin, LOW);
   
   // 讀取 Echo Pin 過多久後收到訊號 LOW->HIGH->LOW
-  long duration = pulseIn(TrigPin, HIGH); 
+  long duration = pulseIn(EchoPin, HIGH); 
   // 將時間換算成距離
-  unsigned long distance = duration/57;
+  unsigned long distance = duration * 0.034 / 2;
   // 將距離列印出來
   Serial.println(distance);
 }

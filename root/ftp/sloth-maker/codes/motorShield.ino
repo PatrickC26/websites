@@ -12,7 +12,7 @@
  * https://sites.google.com/view/sloth-maker/code-example/motorshield
  */
 
-// 加入 1.3" OLED 螢幕
+// 加入 Motor Shield
 #include <AFMotor.h>
 // https://github.com/adafruit/Adafruit-Motor-Shield-library
 
