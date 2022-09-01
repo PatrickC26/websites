@@ -1,6 +1,6 @@
 import json
 
-# location = "/home/pi/Desktop/project/"
+# location = "/home/pi/Desktop/project/database/"
 location = "/Users/slothsmba/Desktop/CGU_project/project/database/"
 
 errString_1 = "ERROR(1) : Due to value too large or too small"
@@ -10,33 +10,46 @@ errString_4 = "ERROR(4) : "
 
 
 class getData:
+    def __getD(id, dataB):
+        allDataOrigional_Control = "{\"A\":\"999\",\"T\":\"0\",\"[\":\"\",\"Q\":\"0\",\"P\":\"0\"}"
+        allDataOrigional_Float = "{\"B\":\"0\",\"C\":\"0\",\"F\":\"0\",\"G\":\"0\",\"H\":\"0\",\"I\":\"0\",\"J\":\"0\",\"K\":\"0\",\"L\":\"0\",\"N\":\"0\",\"O\":\"\",\"R\":\"0\",\"S\":\"0\",\"U\":\"0\",\"V\":\"0\",\"W\":\"0\",\"X\":\"0\",\"D\":\"0\",\"E\":\"0\",\"]\":\"0\"}"
+        allDataOrigional_String = "{\"C\":\"\",\"M\":\"0.0,0.0\",\"O\":\"\",\"Y\":\"\",\"^\":\"0,C,01\"}"
+        allDataOrigional = ""
+
+        if dataB == "FLoat":
+            allDataOrigional = allDataOrigional_Float
+        elif dataB == "String":
+            allDataOrigional = allDataOrigional_String
+        elif dataB == "Control":
+            allDataOrigional = allDataOrigional_Control
+
+        with open(location + dataB + "_database.json") as inputfile:
+            if not ("{" in inputfile.read()):
+                with open(location + dataB + "_database.json", "w") as outputfile:
+                    outputfile.write(allDataOrigional)
+                data = json.load(allDataOrigional)
+                return data[id]
+            else:
+                data = json.load(inputfile)
+                return data[id]
+
     def getFloatData(id):
-        with open(location + "Float_database.json") as inputfile:
-            data = json.load(inputfile)
-            return data[id]
+        return getData.__getD(id, "Float")
 
     def getStringData(id):
-        with open(location + "String_database.json") as inputfile:
-            data = json.load(inputfile)
-            return data[id]
+        return getData.__getD(id, "String")
 
     def getControlData(id):
-        with open(location + "Control_database.json") as inputfile:
-            data = json.load(inputfile)
-            return data[id]
+        return getData.__getD(id, "Control")
 
 
 class putData:
-    allDataOrigional_Control = "{\"A\":\"999\",\"T\":\"0\",\"[\":\"\",\"Q\":\"0\",\"P\":\"0\"}"
-    allDataOrigional_Float = "{\"B\":\"0\",\"C\":\"0\",\"F\":\"0\",\"G\":\"0\",\"H\":\"0\",\"I\":\"0\",\"J\":\"0\",\"K\":\"0\",\"L\":\"0\",\"N\":\"0\",\"O\":\"\",\"R\":\"0\",\"S\":\"0\",\"U\":\"0\",\"V\":\"0\",\"W\":\"0\",\"X\":\"0\",\"D\":\"0\",\"E\":\"0\",\"]\":\"0\"}"
-    allDataOrigional_String = "{\"C\":\"\",\"M\":\"0.0,0.0\",\"O\":\"\",\"Y\":\"\",\"^\":\"0,C,01\"}"
-    allDataOrigional = ""
-
     def __putD(id, newdata, dataB):
-        global allDataOrigional
-        global allDataOrigional_String
-        global allDataOrigional_Float
-        global allDataOrigional_Control
+        allDataOrigional_Control = "{\"A\":\"999\",\"T\":\"0\",\"[\":\"\",\"Q\":\"0\",\"P\":\"0\"}"
+        allDataOrigional_Float = "{\"B\":\"0\",\"C\":\"0\",\"F\":\"0\",\"G\":\"0\",\"H\":\"0\",\"I\":\"0\",\"J\":\"0\",\"K\":\"0\",\"L\":\"0\",\"N\":\"0\",\"O\":\"\",\"R\":\"0\",\"S\":\"0\",\"U\":\"0\",\"V\":\"0\",\"W\":\"0\",\"X\":\"0\",\"D\":\"0\",\"E\":\"0\",\"]\":\"0\"}"
+        allDataOrigional_String = "{\"C\":\"\",\"M\":\"0.0,0.0\",\"O\":\"\",\"Y\":\"\",\"^\":\"0,C,01\"}"
+        allDataOrigional = ""
+
         if dataB == "FLoat" :
             allDataOrigional = allDataOrigional_Float
         elif dataB == "String" :
