@@ -16,21 +16,19 @@ class getData:
         allDataOrigional_String = "{\"C\":\"\",\"M\":\"0.0,0.0\",\"O\":\"\",\"Y\":\"\",\"^\":\"0,C,01\"}"
         allDataOrigional = ""
 
-        if dataB == "FLoat":
+        if (dataB == "Float"):
             allDataOrigional = allDataOrigional_Float
-        elif dataB == "String":
+        elif (dataB == "String"):
             allDataOrigional = allDataOrigional_String
-        elif dataB == "Control":
+        elif (dataB == "Control"):
             allDataOrigional = allDataOrigional_Control
 
         with open(location + dataB + "_database.json") as inputfile:
-            if not ("{" in inputfile.read()):
+            if inputfile.read().index("{") < -1:
                 with open(location + dataB + "_database.json", "w") as outputfile:
                     outputfile.write(allDataOrigional)
-                data = json.load(allDataOrigional)
-                return data[id]
-            else:
-                data = json.load(inputfile)
+            with open(location + dataB + "_database.json") as Ninputfile:
+                data = json.load(Ninputfile)
                 return data[id]
 
     def getFloatData(id):
@@ -50,11 +48,11 @@ class putData:
         allDataOrigional_String = "{\"C\":\"\",\"M\":\"0.0,0.0\",\"O\":\"\",\"Y\":\"\",\"^\":\"0,C,01\"}"
         allDataOrigional = ""
 
-        if dataB == "FLoat" :
+        if dataB == "Float":
             allDataOrigional = allDataOrigional_Float
-        elif dataB == "String" :
+        elif dataB == "String":
             allDataOrigional = allDataOrigional_String
-        elif dataB == "Control" :
+        elif dataB == "Control":
             allDataOrigional = allDataOrigional_Control
 
         try:
