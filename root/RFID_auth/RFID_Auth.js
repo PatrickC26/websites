@@ -37,36 +37,36 @@ function rfidAuth_load(){
 
 function checkAuth() {
     console.log(readingAuth);
-    
+
     if (redirectI != 0){
     redirectI++;
     console.log(redirectI);
     if (redirectI >= 3)
         window.location.href = finalRedirect;
     }
-    
+
     if (readingAuth){
         readCount++;
-        
+
         if (readCount > 100){
             firebasePUT("request/requestScan", "0");
-            
+
             if (confirm("login fail (time out : 100) \nlogin again?"))
                 rfidAuth_load();
             else{
                 document.getElementById('rfidAuth_button').disabled = false;
                 readingAuth = false;
             }
-                
+
             return TIMEOUT; // time out
         }
 
-        
+
         if (firebaseGET("request/requestScan") == "0") {
             let scanUID = firebaseGET("request/scanUID");
             if (scanUID == "")
                 startAuth();
-            
+
             readingAuth = false;
 
             if (!firebaseGET("account/" + scanUID + "/access").includes(access)){
@@ -76,7 +76,7 @@ function checkAuth() {
                     document.getElementById('rfidAuth_button').disabled = false;
                 return NO_ACCESS; // no access
             }
-            
+
             if (firebaseGET("Access/" + access + "/inuse") != ("1")){
                 if (confirm("login fail (err code : NO_ACCESS) \nlogin again?"))
                     rfidAuth_load();
@@ -84,7 +84,7 @@ function checkAuth() {
                     document.getElementById('rfidAuth_button').disabled = false;
                 return NO_ACCESS; // no access
             }
-            
+
             // Now time
             var availableT = new Date().setMinutes(new Date().getMinutes() - 1);
 
@@ -112,9 +112,9 @@ function checkAuth() {
                     document.getElementById('rfidAuth_button').disabled = false;
                 return TIMEOUT;
             }
-                
-            
-            
+
+
+
             if (confirm("login fail (err code : 6) \nlogin again?"))
                 rfidAuth_load();
             else
@@ -127,18 +127,18 @@ function checkAuth() {
 
 function startAuth() {
     document.getElementById('rfidAuth_button').disabled = true;
-    
+
     try {
         firebasePUT("request/requestScan", "1");
         firebasePUT("request/isNew", "0");
         firebasePUT("request/scanUID", "");
 
         for (let j = 0 ; j < 50000 ; j++);
-        
+
         readingAuth = true;
-        
+
         readCount = 0;
-        
+
         return SUCCESS;
     }
     catch ( e) {
@@ -155,11 +155,11 @@ function avaliableTimeCompare(time , availableGap){
     try{
         if (time == "")
             return NO_ACCESS;
-        
+
         let dateT = time.substring(0, time.indexOf(" ")).split("-");
         let timeT = time.substring(time.indexOf(" ") +1 , time.length).split(":");
-        
-        
+
+
         var nowT = new Date();
         if ( parseInt(dateT[0]) == nowT.getFullYear()
               && parseInt(dateT[1]) == (nowT.getMonth()+1)
@@ -180,7 +180,7 @@ function avaliableTimeCompare(time , availableGap){
         }
         else
             return TIMEOUT;
-        
+
     }
     catch (e){console.log(e);}
     return FAIL;
@@ -194,23 +194,23 @@ function successF(){
         readingAuth = false;
     }
     else{
-        
+
         var authToken = "";
         var alphabet = "ABCDEFGHJKMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz123456789123456789";
-        
+
         for (let j = 0 ; j <  Math.abs(Math.random()*7) +20 ; j ++) {
             var int_random = Math.abs(Math.random()* 64);
             console.log(int_random);
             authToken += alphabet.charAt(int_random);
         }
-        
+
         var nowT1 = new Date();
-        
+
         authToken = authToken + "T" + (nowT1.getMinutes()).toString();
-        
+
         firebasePUT("Access/" + access + "/ac", authToken);
-        
-        
+
+
         finalRedirect = redirectURL + "?auth=" + authToken;
 
         redirectI = 1;
@@ -222,7 +222,8 @@ function successF(){
 
 function login(){
     let pswd = firebaseGET("Access/" + access + "/pswd");
-    if (document.querySelector('.editor').value == pswd){
+    // console.log(document.getElementById('pswd').value);
+    if (document.getElementById('pswd').value == pswd){
         firebasePUT("request/requestScan", "2");
         successF();
     }
