@@ -1,5 +1,4 @@
-{
-  serviceHost”:”0:0:0:0:0:0:0:1”,
+{serviceHost”:”0:0:0:0:0:0:0:1”,
   ”credential":{
     "protocols":{
       "mqtt":{
