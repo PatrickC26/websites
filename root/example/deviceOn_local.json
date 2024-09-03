@@ -9,7 +9,7 @@
       },
       ”mqtt+ssl":{
         "password”:”05155853”,
-        ”port":8883,
+        ”port":1883,
         "ssl":true,
         "username”:”admin”
       }
