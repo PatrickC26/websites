@@ -1,1 +1,1 @@
-{"channel_token": "", "webhook_id": "ee481c17c8ae36266612fe4d74bbd685", "webhook_bearer": "22381d5762fbc834e57504cd2e541f821bd7a46ebd432d2d", "language": "zh-TW", "maxQuery": 5, "maxInterval": 600, "version": "S-0.1.20250101"}
+{"channel_token": "", "webhook_id": "ee481c17c8ae36266612fe4d74bbd685", "webhook_bearer": "22381d5762fbc834e57504cd2e541f821bd7a46ebd432d2d", "language": "zh-TW", "maxQuery": 5, "maxInterval": 600, "version": "S-1.0.20250110", "auth_key": ""}
