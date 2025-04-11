@@ -1,0 +1,9 @@
+<xml>
+  <category><name>Luosi</name><replace>Luosi's Blocks</replace></category>
+  <category><name>Luosi_SERIAL</name><replace>Serial</replace></category>
+  <category><name>Luosi_Basic</name><replace>Basic Modules</replace></category>
+  <category><name>Luosi_L293D_D1</name><replace>D1 Motor Shield</replace></category>
+  <category><name>Luosi_Internet</name><replace>D1 Motor Shield</replace></category>
+  <category><name>Luosi_OLED</name><replace>D1 Motor Shield</replace></category>
+
+</xml>

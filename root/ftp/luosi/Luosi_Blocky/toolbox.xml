@@ -1,0 +1,366 @@
+<category id="category_Luosi_BlockyDuino" name="Luosi" colour="30">
+    <category id="category_Luosi_serial" name="Luosi_SERIAL">
+        <block type="Luosi_serial_begin"></block>
+        <block type="Luosi_serial_end"></block>
+        <block type="Luosi_serial_print">
+          <value name="TEXT">
+            <block type="text">
+              <field name="TEXT"></field>
+            </block>
+          </value>
+        </block>
+        <block type="Luosi_serial_println">
+          <value name="TEXT">
+            <block type="text">
+              <field name="TEXT"></field>
+            </block>
+          </value>
+        </block>
+        <block type="Luosi_serial_readString"></block>
+        <block type="Luosi_serial_readuntil">
+          <value name="TEXT">
+            <block type="text"></block>
+          </value>
+        </block>
+        <block type="Luosi_serial_read_result"></block>
+    </category>
+
+    <category id="category_Luosi_basic" name="Luosi_Basic">
+      <block type="Luosi_basic_D1_pins"></block>
+      <block type="Luosi_basic_sonar_init">
+        <value name="TRIG_PIN">
+          <block type="Luosi_basic_D1_pins"></block>
+        </value>
+        <value name="ECHO_PIN">
+          <block type="Luosi_basic_D1_pins"></block>
+        </value>
+      </block>
+      <block type="Luosi_basic_sonar"></block>
+      <block type="Luosi_basic_dht11">
+        <value name="PIN">
+          <block type="Luosi_basic_D1_pins"></block>
+        </value>
+      </block>
+      <block type="custom_tone">
+        <value name="PIN">
+            <block type="Luosi_basic_D1_pins"></block>
+        </value>
+        <value name="FREQ">
+            <block type="math_number">
+                <field name="NUM">255</field>
+            </block>
+        </value>
+        <value name="DURATION">
+            <block type="math_number">
+                <field name="NUM">300</field>
+            </block>
+        </value>
+      </block>
+      <block type="Luosi_basic_servo">
+        <value name="attach_Pin">
+            <block type="Luosi_basic_D1_pins"></block>
+        </value>
+        <value name="Angle">
+            <block type="math_number">
+                <field name="NUM">0</field>
+            </block>
+        </value>
+      </block>
+	    <block type="Luosi_basic_RFID">
+        <value name="SS_Pin">
+            <block type="Luosi_basic_D1_pins"></block>
+        </value>
+        <value name="RST_Pin">
+            <block type="Luosi_basic_D1_pins"></block>
+        </value>
+	    </block>
+    </category>
+
+    <category id="category_Luosi_l293d" name="Luosi_L293D_D1">
+      <block type="Luosi_AFM_run">
+        <value name="SPEED">
+          <block type="math_number">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+      <block type="Luosi_AFM_stop"></block>
+    </category>
+
+
+    <category id="category_Luosi_Internet" name="Luosi_Internet">
+      <block type="Luosi_Wifi_connect">
+        <value name="Luosi_WiFi_SSID">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="Luosi_WiFi_PSWD">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+
+      <block type="Luosi_line_Init">
+        <value name="ID">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="TOKEN">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+      <block type="Luosi_line_sendMsg">
+        <value name="CONTENT">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+
+	    <block type="Luosi_HTTP_get">
+        <value name="Luosi_HTTP_get_url">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+	    <block type="Luosi_HTTP_put">
+        <value name="Luosi_HTTP_put_url">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+        <value name="Luosi_HTTP_put_data">
+          <block type="text">
+            <field name="TEXT"></field>
+          </block>
+        </value>
+      </block>
+
+      <block type="Luosi_things_get_url">
+          <value name="KEY">
+              <block type="text">
+                  <field name="TEXT">your ThingSpeak key</field>
+              </block>
+          </value>
+          <value name="FIELD1">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+          <value name="FIELD2">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+          <value name="FIELD3">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+          <value name="FIELD4">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+          <value name="FIELD5">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+          <value name="FIELD6">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+          <value name="FIELD7">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+          <value name="FIELD8">
+              <block type="math_number">
+                  <field name="NUM">0</field>
+              </block>
+          </value>
+      </block>
+      <block type="Luosi_things_get_rec"></block>
+
+    </category>
+
+
+
+    <category id="category_oled" name="Luosi_OLED">
+  		<block type="oled_display_setting"></block>
+  		<block type="oled_display_clear"></block>
+  		<block type="oled_display_draw_commands">
+  			<statement name="DRAW_CMD">
+  				<block type="oled_display_draw_text">
+  					<value name="START_X">
+  						<block type="math_number">
+  							<field name="NUM">0</field>
+  						</block>
+  					</value>
+  					<value name="START_Y">
+  						<block type="math_number">
+  							<field name="NUM">0</field>
+  						</block>
+  					</value>
+  					<value name="CONTENT">
+  						<block type="text">
+  							<field name="TEXT">HELLO</field>
+  						</block>
+  					</value>
+  					<next>
+  						<block type="oled_display_draw_line">
+  							<value name="START_X">
+  								<block type="math_number">
+  									<field name="NUM">0</field>
+  								</block>
+  							</value>
+  							<value name="START_Y">
+  								<block type="math_number">
+  									<field name="NUM">11</field>
+  								</block>
+  							</value>
+  							<value name="END_X">
+  								<block type="math_number">
+  									<field name="NUM">30</field>
+  								</block>
+  							</value>
+  							<value name="END_Y">
+  								<block type="math_number">
+  									<field name="NUM">11</field>
+  								</block>
+  							</value>
+  						</block>
+  					</next>
+  				</block>
+  			</statement>
+  		</block>
+  		<block type="oled_display_draw_line">
+  			<value name="START_X">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="START_Y">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="END_X">
+  				<block type="math_number">
+  					<field name="NUM">40</field>
+  				</block>
+  			</value>
+  			<value name="END_Y">
+  				<block type="math_number">
+  					<field name="NUM">40</field>
+  				</block>
+  			</value>
+  		</block>
+  		<block type="oled_display_draw_box">
+  			<value name="START_X">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="START_Y">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="END_X">
+  				<block type="math_number">
+  					<field name="NUM">40</field>
+  				</block>
+  			</value>
+  			<value name="END_Y">
+  				<block type="math_number">
+  					<field name="NUM">40</field>
+  				</block>
+  			</value>
+  		</block>
+  		<block type="oled_display_draw_frame">
+  			<value name="START_X">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="START_Y">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="END_X">
+  				<block type="math_number">
+  					<field name="NUM">40</field>
+  				</block>
+  			</value>
+  			<value name="END_Y">
+  				<block type="math_number">
+  					<field name="NUM">40</field>
+  				</block>
+  			</value>
+  		</block>
+  		<block type="oled_display_draw_disc">
+  			<value name="CENTER_X">
+  				<block type="math_number">
+  					<field name="NUM">20</field>
+  				</block>
+  			</value>
+  			<value name="CENTER_Y">
+  				<block type="math_number">
+  					<field name="NUM">20</field>
+  				</block>
+  			</value>
+  			<value name="RADIUS">
+  				<block type="math_number">
+  					<field name="NUM">15</field>
+  				</block>
+  			</value>
+  		</block>
+  		<block type="oled_display_draw_circle">
+  			<value name="CENTER_X">
+  				<block type="math_number">
+  					<field name="NUM">20</field>
+  				</block>
+  			</value>
+  			<value name="CENTER_Y">
+  				<block type="math_number">
+  					<field name="NUM">20</field>
+  				</block>
+  			</value>
+  			<value name="RADIUS">
+  				<block type="math_number">
+  					<field name="NUM">15</field>
+  				</block>
+  			</value>
+  		</block>
+  		<block type="oled_display_set_font">
+  		</block>
+  		<block type="oled_display_draw_text">
+  			<value name="START_X">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="START_Y">
+  				<block type="math_number">
+  					<field name="NUM">0</field>
+  				</block>
+  			</value>
+  			<value name="CONTENT">
+  				<block type="text">
+  					<field name="TEXT">HELLO</field>
+  				</block>
+  			</value>
+  		</block>
+	  </category>
+</category>
