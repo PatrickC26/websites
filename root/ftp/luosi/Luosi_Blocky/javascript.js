@@ -23,33 +23,33 @@ Blockly.Arduino.Luosi_serial_println=function(){
   return a+'.println(String('+b+'));\n';
 }
 
-Blockly.Arduino.Luosi_serial_readString=function(){
-  var a=this.getFieldValue("SERIAL_PORT"),
-      c=Blockly.Arduino.statementToCode(this,"STATEMENT");
-  Blockly.Arduino.definitions_.define_Luosi_serial_invoke='String serialStr="";';
-  //var returnStr='if ('+a+'.available()) {\n  serialStr = "";\n  while ('+a+'.available()) {\n    serialStr='+a+'.readStringUntil('+b+');\n    serialStr.replace("\\r","");\n'+c+'  }\n}\n';
-  var returnStr='if ('+a+'.available()) {\n  serialStr = "";\n  while ('+a+'.available()) {\n    char tempChar='+a+'.read();\n    if (tempChar!=\'\\n\'&& tempChar!=\'\\r\')\n      serialStr+=String(tempChar);\n    delay(1);\n  }\n'+c+'}\n'
-  return returnStr;
-}
+// Blockly.Arduino.Luosi_serial_readString=function(){
+//   var a=this.getFieldValue("SERIAL_PORT"),
+//       c=Blockly.Arduino.statementToCode(this,"STATEMENT");
+//   Blockly.Arduino.definitions_.define_Luosi_serial_invoke='String Luosi_serialStr="";';
+//   var returnStr='if ('+a+'.available()) {\n  Luosi_serialStr = "";\n  while ('+a+'.available()) {\n    char tempChar='+a+'.read();\n    if (tempChar!=\'\\n\'&& tempChar!=\'\\r\')\n      Luosi_serialStr+=String(tempChar);\n    delay(1);\n  }\n'+c+'}\n'
+//   return returnStr;
+// }
 
 Blockly.Arduino.Luosi_serial_readuntil=function(){
   var a=this.getFieldValue("SERIAL_PORT"),
-      b=Blockly.Arduino.valueToCode(this,"TEXT",Blockly.Arduino.ORDER_ATOMIC)||"",
-      c=Blockly.Arduino.statementToCode(this,"STATEMENT");
-  Blockly.Arduino.definitions_.define_Luosi_serial_invoke='String serialStr="";';
-  b=b.replace(/\"/g,"\'");
-  b=b.replace(/\\\\/g,"\\");
-  if (c!=''){
-    c=c.replace(new RegExp("\n  ","gm"),"\n    ");
-    c='  '+c;
-  }
-  var returnStr='if ('+a+'.available()) {\n  serialStr = "";\n  while ('+a+'.available()) {\n    serialStr='+a+'.readStringUntil('+b+');\n    serialStr.replace("\\r","");\n'+c+'  }\n}\n';
-  return returnStr;
+      b=Blockly.Arduino.valueToCode(this,"TEXT",Blockly.Arduino.ORDER_ATOMIC)||"";
+  return a+'.readStringUntil('+b+');\n';
 }
 
-Blockly.Arduino.Luosi_serial_read_result=function(){
-  return['serialStr',Blockly.Arduino.ORDER_ATOMIC];
+Blockly.Arduino.Luosi_serial_readInt=function(){
+  var a=this.getFieldValue("SERIAL_PORT");
+  return a+'.parseInt();\n';
 }
+
+Blockly.Arduino.Luosi_serial_readChar=function(){
+  var a=this.getFieldValue("SERIAL_PORT");
+  return a+'.read();\n';
+}
+
+// Blockly.Arduino.Luosi_serial_read_result=function(){
+//   return['Luosi_serialStr',Blockly.Arduino.ORDER_ATOMIC];
+// }
 
 
 //Basic
@@ -63,13 +63,12 @@ Blockly.Arduino.Luosi_basic_sonar_init=function(){
       c=Blockly.Arduino.nameDB_.getName(this.getFieldValue('varName'), Blockly.VARIABLE_CATEGORY_NAME);
 
   Blockly.Arduino.definitions_.define_Luosi_sonar_include="#include <Ultrasonic.h>";
-  Blockly.Arduino.definitions_['define_Luosi_sonar_'+c+'_invoke']='Ultrasonic '+c+'('+a+', '+b+');';
+  Blockly.Arduino.definitions_['define_Luosi_sonar_invoke']='Ultrasonic Luosi_sonic('+a+', '+b+');';
   return'';
 };
 
 Blockly.Arduino.Luosi_basic_sonar=function(){
-  var a=Blockly.Arduino.nameDB_.getName(this.getFieldValue('varName'), Blockly.VARIABLE_CATEGORY_NAME);
-  return[a+'.convert('+a+'.timing(), Ultrasonic::CM)',Blockly.Arduino.ORDER_ATOMIC];
+  return'Luosi_sonic.convert(Luosi_sonic.timing(), Ultrasonic::CM)';
 };
 
 Blockly.Arduino.Luosi_basic_dht11=function(){
@@ -80,32 +79,31 @@ Blockly.Arduino.Luosi_basic_dht11=function(){
     myType='readTemperature';
   else if (b=='humidity')
     myType='readHumidity';
-  var tempBoardName=getBoardFullName();
   Blockly.Arduino.definitions_['define_dht_']="#include <DHT_mini.h>";
-  Blockly.Arduino.definitions_['define_dht_set_'+a]="DHT dht11_p"+a+"("+a+", DHT11);";
-  Blockly.Arduino.setups_['setup_dht_'+a]="dht11_p"+a+".begin();";
-  return["dht11_p"+a+"."+myType+"()",Blockly.Arduino.ORDER_ATOMIC];
+  Blockly.Arduino.definitions_['define_dht_set_'+a]="DHT Luosi_dht11_p"+a+"("+a+", DHT11);";
+  Blockly.Arduino.setups_['setup_dht_'+a]="Luosi_dht11_p"+a+".begin();";
+  return["Luosi_dht11_p"+a+"."+myType+"()",Blockly.Arduino.ORDER_ATOMIC];
 };
 
-Blockly.Arduino.Luosi_servo=function(){
+Blockly.Arduino.Luosi_basic_servo=function(){
   var a=Blockly.Arduino.valueToCode(this,"attach_Pin",Blockly.Arduino.ORDER_ATOMIC)||"",
       b=Blockly.Arduino.valueToCode(this,"Angle",Blockly.Arduino.ORDER_ATOMIC)||"";
 
     Blockly.Arduino.definitions_.define_Luosi_servo_include="#include <Servo.h>";
-    Blockly.Arduino.definitions_['Luosi_servo']="Servo __servo;";
-    Blockly.Arduino.setups_['Luosi_servo']="__servo.attach("+a+");";
-  return'__servo.write(' + b + ');\n';
+    Blockly.Arduino.definitions_['Luosi_servo']="Servo Luosi_servo;";
+    Blockly.Arduino.setups_['Luosi_servo']="Luosi_servo.attach("+a+");";
+  return'Luosi_servo.write(' + b + ');\n';
 };
 
-Blockly.Arduino.Luosi_RFID=function(){
+Blockly.Arduino.Luosi_basic_RFID=function(){
   var a=Blockly.Arduino.valueToCode(this,"SS_Pin",Blockly.Arduino.ORDER_ATOMIC)||"",
       b=Blockly.Arduino.valueToCode(this,"RST_Pin",Blockly.Arduino.ORDER_ATOMIC)||"";
 
     Blockly.Arduino.definitions_.define_Luosi_RFID_include="#include <SPI.h>\n#include <MFRC522.h>";
-    Blockly.Arduino.definitions_['Luosi_RFID']='MFRC522 rfid(/*SS_PIN*/ ' + a + ', /*RST_PIN*/ ' + b + ');\nString mfrc522_readID()\n{\nString ret;\nif (rfid.PICC_IsNewCardPresent() && rfid.PICC_ReadCardSerial())\n{\nMFRC522::PICC_Type piccType = rfid.PICC_GetType(rfid.uid.sak);\n\nfor (byte i = 0; i < rfid.uid.size; i++) {\nret += (rfid.uid.uidByte[i] < 0x10 ? "0" : "");\nret += String(rfid.uid.uidByte[i], HEX);\n}\n}\nrfid.PICC_HaltA();\nrfid.PCD_StopCrypto1();\nreturn ret;\n}';
-    Blockly.Arduino.setups_['Luosi_RFID']='SPI.begin();\n  rfid.PCD_Init();'
+    Blockly.Arduino.definitions_['Luosi_RFID']='MFRC522 Luosi_RFID(/*SS_PIN*/ ' + a + ', /*RST_PIN*/ ' + b + ');\nString Luosi_RFID_readID()\n{\nString ret;\nif (Luosi_RFID.PICC_IsNewCardPresent() && Luosi_RFID.PICC_ReadCardSerial())\n{\nMFRC522::PICC_Type piccType = Luosi_RFID.PICC_GetType(Luosi_RFID.uid.sak);\n\nfor (byte i = 0; i < Luosi_RFID.uid.size; i++) {\nret += (Luosi_RFID.uid.uidByte[i] < 0x10 ? "0" : "");\nret += String(Luosi_RFID.uid.uidByte[i], HEX);\n}\n}\nrfid.PICC_HaltA();\nrfid.PCD_StopCrypto1();\nreturn ret;\n}';
+    Blockly.Arduino.setups_['Luosi_RFID']='SPI.begin();\n  Luosi_RFID.PCD_Init();'
 
-  return'mfrc522_readID()';
+  return'Luosi_RFID_readID()';
 };
 
 
@@ -132,7 +130,7 @@ Blockly.Arduino.Luosi_Wifi_connect=function(){
       b=Blockly.Arduino.valueToCode(this,"Luosi_WiFi_PSWD",Blockly.Arduino.ORDER_ATOMIC)||"";
 
     Blockly.Arduino.definitions_.define_Luosi_WiFi_include="#include <ESP8266WiFi.h>";
-    Blockly.Arduino.definitions_['Luosi_WiFi']='#define wifi_SSID "Walter Home" \n#define wifi_PSWD "58629193"';
+    Blockly.Arduino.definitions_['Luosi_WiFi']='#define wifi_SSID '+a+' \n#define wifi_PSWD '+b;
     return 'WiFi.begin(wifi_SSID, wifi_PSWD);\nwhile (WiFi.status() != WL_CONNECTED) {delay(500);Serial.print(".");}\nSerial.print("\\n\\nConnected! IP address: ");\nSerial.println(WiFi.localIP());\n';
 };
 
@@ -156,8 +154,8 @@ Blockly.Arduino.Luosi_HTTP_get=function(){
   var a=Blockly.Arduino.valueToCode(this,"Luosi_HTTP_get_url",Blockly.Arduino.ORDER_ATOMIC)||"";
 
     Blockly.Arduino.definitions_.define_Luosi_HTTP="#include <ESP8266HTTPClient.h>\n#include <WiFiClientSecure.h>";
-    Blockly.Arduino.definitions_['Luosi_HTTP']='WiFiClientSecure Luosi_client_secure; \nHTTPClient https;';
-    Blockly.Arduino.definitions_['Luosi_HTTP_get']='String Luosi_HTTP_get(String Luosi_url){\n  String Luosi_output = "";\n  if (https.begin(Luosi_client_secure, Luosi_url)) {\n    int httpCode = https.GET(); \n    Serial.println("HTTP Get Response code: " + String(httpCode));\n    if (httpCode > 0) Luosi_output = https.getString();\n    https.end();\n  } else Serial.printf("[HTTPS] Unable to connect");\n  return Luosi_output;\n}';
+    Blockly.Arduino.definitions_['Luosi_HTTP']='WiFiClientSecure Luosi_client_secure; \nHTTPClient Luosi_Internet_https;';
+    Blockly.Arduino.definitions_['Luosi_HTTP_get']='String Luosi_HTTP_get(String Luosi_url){\n  String Luosi_output = "";\n  if (Luosi_Internet_https.begin(Luosi_client_secure, Luosi_url)) {\n    int httpCode = Luosi_Internet_https.GET(); \n    Serial.println("HTTP Get Response code: " + String(httpCode));\n    if (httpCode > 0) Luosi_output = Luosi_Internet_https.getString();\n    Luosi_Internet_https.end();\n  } else Serial.printf("[HTTPS] Unable to connect");\n  return Luosi_output;\n}';
     Blockly.Arduino.setups_['Luosi_HTTP']='  Luosi_client_secure.setInsecure();';
     return'Luosi_HTTP_get('+a+')';
 };
@@ -167,8 +165,8 @@ Blockly.Arduino.Luosi_HTTP_put=function(){
       b=Blockly.Arduino.valueToCode(this,"Luosi_HTTP_put_data",Blockly.Arduino.ORDER_ATOMIC)||"";
 
     Blockly.Arduino.definitions_.define_Luosi_HTTP="#include <ESP8266HTTPClient.h>\n#include <WiFiClientSecure.h>";
-    Blockly.Arduino.definitions_['Luosi_HTTP']='WiFiClientSecure Luosi_client_secure; \nHTTPClient https;';
-    Blockly.Arduino.definitions_['Luosi_HTTP_put']='void Luosi_HTTP_put(String Luosi_url, String Luosi_HTTP_upload_txt){\n  if (https.begin(Luosi_client_secure, Luosi_url)) {\n    int httpCode = https.PUT(Luosi_HTTP_upload_txt);\n    Serial.println("HTTP Put Response code: " + String(httpCode));\n    https.end();\n  } else Serial.printf("[HTTPS] Unable to connect");\n}';
+    Blockly.Arduino.definitions_['Luosi_HTTP']='WiFiClientSecure Luosi_client_secure; \nHTTPClient Luosi_Internet_https;';
+    Blockly.Arduino.definitions_['Luosi_HTTP_put']='void Luosi_HTTP_put(String Luosi_url, String Luosi_HTTP_upload_txt){\n  if (Luosi_Internet_https.begin(Luosi_client_secure, Luosi_url)) {\n    int httpCode = Luosi_Internet_https.PUT(Luosi_HTTP_upload_txt);\n    Serial.println("HTTP Put Response code: " + String(httpCode));\n    Luosi_Internet_https.end();\n  } else Serial.printf("[HTTPS] Unable to connect");\n}';
     Blockly.Arduino.setups_['Luosi_HTTP']='  Luosi_client_secure.setInsecure();';
     return'Luosi_HTTP_put('+a+', '+b+');';
 };
@@ -198,12 +196,6 @@ Blockly.Arduino.Luosi_things_get_rec=function(){
 
 //----------------------------------------
 setTimeout(function(){
-/*
-	if (Blockly.Blocks.board_initializes_setup)
-		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="board_initializes_setup" id="0" x="100" y="50"><statement name="CONTENT"><block type="ljj_2023_init"></block></statement><next><block type="initializes_loop" id="1"><statement name="CONTENT"><block type="ljj_2023_loop"><value name="WHO"><block type="ljj_2023_who"></block></value><value name="WHAT"><block type="ljj_2023_what"></block></value></block></statement></block></next></block></xml>');
-	else
-		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="initializes_setup" id="0" x="100" y="50"><next><block type="initializes_loop" id="1"></block></next></block></xml>');
-*/
 	if (Blockly.Blocks.board_initializes_setup)
 		var xmlDoc = Blockly.Xml.textToDom('<xml xmlns="https://developers.google.com/blockly/xml"><block type="board_initializes_setup" id="0" x="100" y="50">         <next><block type="initializes_loop" id="1"></block></next></block></xml>');
 	else

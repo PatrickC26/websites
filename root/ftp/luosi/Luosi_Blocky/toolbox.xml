@@ -16,13 +16,14 @@
             </block>
           </value>
         </block>
-        <block type="Luosi_serial_readString"></block>
+        <block type="Luosi_serial_readRead"></block>
+        <block type="Luosi_serial_readInt"></block>
         <block type="Luosi_serial_readuntil">
           <value name="TEXT">
             <block type="text"></block>
           </value>
         </block>
-        <block type="Luosi_serial_read_result"></block>
+        <!-- <block type="Luosi_serial_read_result"></block> -->
     </category>
 
     <category id="category_Luosi_basic" name="Luosi_Basic">

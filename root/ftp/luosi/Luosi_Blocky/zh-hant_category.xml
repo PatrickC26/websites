@@ -2,7 +2,7 @@
 <category><name>Luosi</name><replace>螺絲創課積木</replace></category>
 <category><name>Luosi_SERIAL</name><replace>序列通訊</replace></category>
 <category><name>Luosi_Basic</name><replace>基本模組</replace></category>
-<category><name>Luosi_L293D</name><replace>D1 馬達模組</replace></category>
+<category><name>Luosi_L293D_D1</name><replace>D1 馬達模組</replace></category>
 <category><name>Luosi_Internet</name><replace>網路工具</replace></category>
 <category><name>Luosi_OLED</name><replace>OLED 顯示器</replace></category>
 
