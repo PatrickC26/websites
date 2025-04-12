@@ -23,7 +23,6 @@
             <block type="text"></block>
           </value>
         </block>
-        <!-- <block type="Luosi_serial_read_result"></block> -->
     </category>
 
     <category id="category_Luosi_basic" name="Luosi_Basic">

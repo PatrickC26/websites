@@ -23,13 +23,6 @@ Blockly.Arduino.Luosi_serial_println=function(){
   return a+'.println(String('+b+'));\n';
 }
 
-// Blockly.Arduino.Luosi_serial_readString=function(){
-//   var a=this.getFieldValue("SERIAL_PORT"),
-//       c=Blockly.Arduino.statementToCode(this,"STATEMENT");
-//   Blockly.Arduino.definitions_.define_Luosi_serial_invoke='String Luosi_serialStr="";';
-//   var returnStr='if ('+a+'.available()) {\n  Luosi_serialStr = "";\n  while ('+a+'.available()) {\n    char tempChar='+a+'.read();\n    if (tempChar!=\'\\n\'&& tempChar!=\'\\r\')\n      Luosi_serialStr+=String(tempChar);\n    delay(1);\n  }\n'+c+'}\n'
-//   return returnStr;
-// }
 
 Blockly.Arduino.Luosi_serial_readuntil=function(){
   var a=this.getFieldValue("SERIAL_PORT"),
@@ -46,10 +39,6 @@ Blockly.Arduino.Luosi_serial_readChar=function(){
   var a=this.getFieldValue("SERIAL_PORT");
   return a+'.read();\n';
 }
-
-// Blockly.Arduino.Luosi_serial_read_result=function(){
-//   return['Luosi_serialStr',Blockly.Arduino.ORDER_ATOMIC];
-// }
 
 
 //Basic

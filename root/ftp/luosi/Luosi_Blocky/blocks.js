@@ -101,16 +101,6 @@ Blockly.Blocks.Luosi_serial_readuntil={init:function(){
   this.setTooltip(Blockly.Msg.Luosi_Serial_TOOLTIP)
 }};
 
-// Blockly.Blocks.Luosi_serial_read_result={init:function(){
-//   this.setHelpUrl(Blockly.Msg.Luosi_Serial_HELPURL);
-//   this.setColour(290);
-//   this.appendDummyInput()
-//       .appendField(Blockly.Msg.Luosi_Serial_TITLE)
-//       .appendField(Blockly.Msg.Luosi_Serial_READ_RESULT);
-//   this.setOutput(!0,"String")
-//   this.setTooltip(Blockly.Msg.Luosi_Serial_TOOLTIP)
-// }};
-
 
 // Basic
 Blockly.Blocks.Luosi_basic_D1_pins={init:function(){
