@@ -3,7 +3,7 @@
 Blockly.Arduino.Luosi_serial_begin=function(){
   var a=this.getFieldValue("SERIAL_PORT"),
       b=this.getFieldValue("BOUND_RATE");
-  return a+'.begin('+b+');\n';
+  return a+'.begin('+b+');\n'+a+'.setTimeout(100);\n';
 }
 
 Blockly.Arduino.Luosi_serial_end=function(){
@@ -23,8 +23,24 @@ Blockly.Arduino.Luosi_serial_println=function(){
   return a+'.println(String('+b+'));\n';
 }
 
+Blockly.Arduino.Luosi_serial_available=function(){
+  var a=this.getFieldValue("SERIAL_PORT"),
+      c=Blockly.Arduino.statementToCode(this,"STATEMENT");
 
-Blockly.Arduino.Luosi_serial_readuntil=function(){
+  if (c!=''){
+    c=c.replace(new RegExp("\n  ","gm"),"\n    ");
+    c='  '+c;
+  }
+  var returnStr= 'if ('+a+'.available()){\n'+c+'\n  Serial.read();\n  }\n';
+  return returnStr;
+}
+
+Blockly.Arduino.Luosi_serial_readUntilNL=function(){
+  var a=this.getFieldValue("SERIAL_PORT");
+  return a+'.readString();\n';
+}
+
+Blockly.Arduino.Luosi_serial_readUntil=function(){
   var a=this.getFieldValue("SERIAL_PORT"),
       b=Blockly.Arduino.valueToCode(this,"TEXT",Blockly.Arduino.ORDER_ATOMIC)||"";
   return a+'.readStringUntil('+b+');\n';
@@ -37,7 +53,7 @@ Blockly.Arduino.Luosi_serial_readInt=function(){
 
 Blockly.Arduino.Luosi_serial_readChar=function(){
   var a=this.getFieldValue("SERIAL_PORT");
-  return a+'.read();\n';
+  return '(char)('+a+'.read());\n';
 }
 
 
@@ -89,7 +105,7 @@ Blockly.Arduino.Luosi_basic_RFID=function(){
       b=Blockly.Arduino.valueToCode(this,"RST_Pin",Blockly.Arduino.ORDER_ATOMIC)||"";
 
     Blockly.Arduino.definitions_.define_Luosi_RFID_include="#include <SPI.h>\n#include <MFRC522.h>";
-    Blockly.Arduino.definitions_['Luosi_RFID']='MFRC522 Luosi_RFID(/*SS_PIN*/ ' + a + ', /*RST_PIN*/ ' + b + ');\nString Luosi_RFID_readID()\n{\nString ret;\nif (Luosi_RFID.PICC_IsNewCardPresent() && Luosi_RFID.PICC_ReadCardSerial())\n{\nMFRC522::PICC_Type piccType = Luosi_RFID.PICC_GetType(Luosi_RFID.uid.sak);\n\nfor (byte i = 0; i < Luosi_RFID.uid.size; i++) {\nret += (Luosi_RFID.uid.uidByte[i] < 0x10 ? "0" : "");\nret += String(Luosi_RFID.uid.uidByte[i], HEX);\n}\n}\nrfid.PICC_HaltA();\nrfid.PCD_StopCrypto1();\nreturn ret;\n}';
+    Blockly.Arduino.definitions_['Luosi_RFID']='MFRC522 Luosi_RFID(/*SS_PIN*/ ' + a + ', /*RST_PIN*/ ' + b + ');\nString Luosi_RFID_readID()\n{\nString ret;\nif (Luosi_RFID.PICC_IsNewCardPresent() && Luosi_RFID.PICC_ReadCardSerial())\n{\nMFRC522::PICC_Type piccType = Luosi_RFID.PICC_GetType(Luosi_RFID.uid.sak);\n\nfor (byte i = 0; i < Luosi_RFID.uid.size; i++) {\nret += (Luosi_RFID.uid.uidByte[i] < 0x10 ? "0" : "");\nret += String(Luosi_RFID.uid.uidByte[i], HEX);\n}\n}\nLuosi_RFID.PICC_HaltA();\nLuosi_RFID.PCD_StopCrypto1();\nreturn ret;\n}';
     Blockly.Arduino.setups_['Luosi_RFID']='SPI.begin();\n  Luosi_RFID.PCD_Init();'
 
   return'Luosi_RFID_readID()';

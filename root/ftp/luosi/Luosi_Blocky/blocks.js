@@ -60,6 +60,22 @@ Blockly.Blocks.Luosi_serial_println={init:function(){
   this.setTooltip(Blockly.Msg.Luosi_Serial_TOOLTIP)
 }};
 
+Blockly.Blocks.Luosi_serial_available={init:function(){
+    this.setHelpUrl(Blockly.Msg.Luosi_Serial_HELPURL);
+    this.setColour(290);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.Luosi_Serial_TITLE);
+    this.appendDummyInput()
+        .appendField(new Blockly.FieldDropdown([["Serial","Serial"],["Serial1","Serial1"],["Serial2","Serial2"]]),"SERIAL_PORT")
+        .appendField(Blockly.Msg.Luosi_Serial_available);
+//    this.setInputsInline(!0);
+    this.setInputsInline(!0);
+    this.setPreviousStatement(!0,null);
+    this.setNextStatement(!0,null);
+    this.appendStatementInput("STATEMENT");
+    this.setTooltip(Blockly.Msg.Luosi_Serial_TOOLTIP)
+}};
+
 Blockly.Blocks.Luosi_serial_readChar={init:function(){
   this.setHelpUrl(Blockly.Msg.Luosi_Serial_HELPURL);
   this.setColour(290);
@@ -82,11 +98,11 @@ Blockly.Blocks.Luosi_serial_readInt={init:function(){
       .appendField(new Blockly.FieldDropdown([["Serial","Serial"],["Serial1","Serial1"],["Serial2","Serial2"]]),"SERIAL_PORT")
       .appendField(Blockly.Msg.Luosi_Serial_READ_INT);
   this.setInputsInline(!0);
-  this.setOutput(!0, "String");
+  this.setOutput(!0, "Number");
   this.setTooltip(Blockly.Msg.Luosi_Serial_TOOLTIP)
 }};
 
-Blockly.Blocks.Luosi_serial_readuntil={init:function(){
+Blockly.Blocks.Luosi_serial_readUntil={init:function(){
   this.setHelpUrl(Blockly.Msg.Luosi_Serial_HELPURL);
   this.setColour(290);
   this.appendDummyInput()
@@ -96,6 +112,20 @@ Blockly.Blocks.Luosi_serial_readuntil={init:function(){
   this.appendValueInput("TEXT")
       .setCheck("String")
       .appendField(Blockly.Msg.Luosi_Serial_READUNTIL);
+  this.setInputsInline(!0);
+  this.setOutput(!0, "String");
+  this.setTooltip(Blockly.Msg.Luosi_Serial_TOOLTIP)
+}};
+
+Blockly.Blocks.Luosi_serial_readUntilNL={init:function(){
+  this.setHelpUrl(Blockly.Msg.Luosi_Serial_HELPURL);
+  this.setColour(290);
+  this.appendDummyInput()
+      .appendField(Blockly.Msg.Luosi_Serial_TITLE);
+  this.appendDummyInput()
+      .appendField(new Blockly.FieldDropdown([["Serial","Serial"],["Serial1","Serial1"],["Serial2","Serial2"]]),"SERIAL_PORT")
+//  this.appendDummyInput()
+      .appendField(Blockly.Msg.Luosi_Serial_READUNTILNL);
   this.setInputsInline(!0);
   this.setOutput(!0, "String");
   this.setTooltip(Blockly.Msg.Luosi_Serial_TOOLTIP)
@@ -160,13 +190,13 @@ Blockly.Blocks.Luosi_basic_servo={init:function(){
   this.setHelpUrl(Blockly.Msg.Luosi_Basic_HELPURL);
   this.setColour(230);
   this.appendDummyInput()
-      .appendField("Servo Write");
+      .appendField(Blockly.Msg.Luosi_Basic_Servo);
   this.appendValueInput("attach_Pin")
       .setCheck("Number")
-      .appendField("attach_Pin");
+      .appendField(Blockly.Msg.Luosi_Basic_Servo_pin);
   this.appendValueInput("Angle")
       .setCheck("Number")
-      .appendField("Angle");
+      .appendField(Blockly.Msg.Luosi_Basic_Servo_angle);
   this.setInputsInline(!0);
   this.setPreviousStatement(!0,null);
   this.setNextStatement(!0,null);

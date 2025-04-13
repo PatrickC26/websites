@@ -16,11 +16,13 @@
             </block>
           </value>
         </block>
-        <block type="Luosi_serial_readRead"></block>
+        <block type="Luosi_serial_available"></block>
+        <block type="Luosi_serial_readChar"></block>
         <block type="Luosi_serial_readInt"></block>
-        <block type="Luosi_serial_readuntil">
+        <block type="Luosi_serial_readUntilNL"></block>
+        <block type="Luosi_serial_readUntil">
           <value name="TEXT">
-            <block type="text"></block>
+            <block type="text_quotationmark"> </block>
           </value>
         </block>
     </category>

@@ -7,7 +7,9 @@ Blockly.Msg.Luosi_Serial_INIT = "initial";
 Blockly.Msg.Luosi_Serial_END = 'end';
 Blockly.Msg.Luosi_Serial_PRINT = "print";
 Blockly.Msg.Luosi_Serial_PRINTLN = "print(new line)";
+Blockly.Msg.Luosi_Serial_available = "available Serial ?";
 Blockly.Msg.Luosi_Serial_READUNTIL = "read string until character";
+Blockly.Msg.Luosi_Serial_READUNTILNL = "read string until new line";
 Blockly.Msg.Luosi_Serial_READ_RESULT = "get string";
 Blockly.Msg.Luosi_Serial_READ_STRING = "read available string";
 Blockly.Msg.Luosi_Serial_READ_INT = "read int";
@@ -16,6 +18,9 @@ Blockly.Msg.Luosi_Serial_READ_CHAR = "read char";
 
 //L293D
 Blockly.Msg.Luosi_AFM_HELPURL = "";
+Blockly.Msg.Luosi_Basic_Servo = "Servo motor";
+Blockly.Msg.Luosi_Basic_Servo_pin = "Pin";
+Blockly.Msg.Luosi_Basic_Servo_angle = "angle";
 Blockly.Msg.Luosi_AFM_TITLE = "L293D Shield";
 Blockly.Msg.Luosi_AFM_TOOLTIP = "L293D";
 Blockly.Msg.Luosi_AFM_MOTOR = "motor";
